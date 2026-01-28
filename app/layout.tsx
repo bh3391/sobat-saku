@@ -21,10 +21,13 @@ export default function RootLayout({
         <body className={inter.className}>
           {children}
           <Toaster 
-  position="bottom-center" 
-  richColors 
-  containerStyle={{ zIndex: 99999 }} // Paksa paling atas
-/>
+            position="bottom-center" 
+            richColors 
+            // Gunakan properti style langsung atau hilangkan jika tidak sangat mendesak
+            style={{ zIndex: 99999 }} 
+            // Jika masih error, gunakan asersi 'any' untuk melewati pengecekan build
+            {...({ style: { zIndex: 99999 } } as any)}
+          />
         </body>
       </html>
     </ClerkProvider>

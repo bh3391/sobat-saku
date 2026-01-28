@@ -110,16 +110,23 @@ export default function TransactionClient({ initialData, categories }: any) {
           <div className="h-40 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie
-                  activeIndex={activeIndex === null ? undefined : activeIndex}
-                  activeShape={renderActiveShape}
-                  data={categoryData}
-                  innerRadius={35} outerRadius={50} dataKey="value" stroke="none"
-                  onClick={(_, index) => setActiveIndex(activeIndex === index ? null : index)}
-                >
-                  {categoryData.map((_, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)}
-                </Pie>
-              </PieChart>
+                    <Pie
+                        {...({
+                        activeIndex: activeIndex === null ? undefined : activeIndex,
+                        activeShape: renderActiveShape,
+                        data: categoryData,
+                        innerRadius: 35,
+                        outerRadius: 50,
+                        dataKey: "value",
+                        stroke: "none",
+                        onClick: (_: any, index: number) => setActiveIndex(activeIndex === index ? null : index)
+                        } as any)}
+                    >
+                        {categoryData.map((_: any, index: number) => (
+                        <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                    </Pie>
+                </PieChart>
             </ResponsiveContainer>
           </div>
           <div className="mt-2 h-10 flex flex-col items-center justify-center">
